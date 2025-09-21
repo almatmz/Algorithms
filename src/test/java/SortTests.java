@@ -1,5 +1,6 @@
 import algorithms.MergeSort;
 import algorithms.Metrics;
+import algorithms.QuickSort;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,6 +23,17 @@ public class SortTests {
             int[] a = randomArray(n);
             int[] b = Arrays.copyOf(a, a.length);
             MergeSort.sort(a, m);
+            Arrays.sort(b);
+            assertArrayEquals(b, a);
+        }
+    }
+    @Test
+    public void testQuickSort() {
+        Metrics m = new Metrics();
+        for (int n : new int[]{0,1,2,10,50,1000}) {
+            int[] a = randomArray(n);
+            int[] b = Arrays.copyOf(a, a.length);
+            QuickSort.sort(a, m);
             Arrays.sort(b);
             assertArrayEquals(b, a);
         }
