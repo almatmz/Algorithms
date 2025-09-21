@@ -4,20 +4,17 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class Main {
-    // small CLI: run basic benchmark or run algorithms interactively
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         if (args.length == 0) {
             printUsage();
             return;
         }
         switch (args[0]) {
             case "bench":
-                // bench <algorithm> <n> <trials> <outfile>
                 if (args.length < 5) { printUsage(); return; }
                 Benchmarks.main(Arrays.copyOfRange(args,1,args.length));
                 break;
             case "run":
-                // run <algorithm> <n>
                 if (args.length < 3) { printUsage(); return; }
                 String alg = args[1];
                 int n = Integer.parseInt(args[2]);
