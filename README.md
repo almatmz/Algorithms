@@ -66,6 +66,14 @@ Metrics such as runtime, recursion depth, comparisons, and allocations are measu
 | 10 000   | 2,53                  | 6,67             | 3,27                | 19,55                      |
 | 100 000  | 29,71                  | 27,35             | 10,51                | 156,22                      |
 
+
+| n       | MergeSort depth | QS depth | Select depth | Closest Pair depth  |
+|---------:|------------------:|--------------:|-----------------:|-----------------------:|
+| 1 000    | 6                 | 6             | 0                | 9                      |
+| 10 000   | 10                  | 9             | 0                | 12                      |
+| 100 000  | 13                  | 10             | 0                | 16                      |
+
+
 - **Time vs n**: All four follow their predicted Θ-curves. QuickSort is fastest on average but occasionally shows deeper recursion.
 - **Depth vs n**: QuickSort stays close to 2 log₂ n; MergeSort depth is ≈ log₂ n.
 - **Constant-Factor Effects**:
