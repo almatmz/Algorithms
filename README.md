@@ -15,7 +15,7 @@ Metrics such as runtime, recursion depth, comparisons, and allocations are measu
 ## 🏗 Architecture Notes
 
 ### Recursion Depth Control
-- **MergeSort**: Uses a **small-n cutoff** (e.g., `n ≤ 32` → insertion sort) to reduce recursion depth and allocation churn.
+- **MergeSort**: Uses a **small-n cutoff** (e.g., `n ≤ 16` → insertion sort) to reduce recursion depth and allocation churn.
 - **QuickSort**: Always **recurses into the smaller partition** first, while iterating over the larger one. This guarantees stack depth ≲ 2 × ⌊log₂ n⌋ on random pivots.
 - **Deterministic Select**: Recurses only into the **partition containing k** and always chooses the smaller side if ambiguous.
 - **Closest Pair**: Recursion splits the x-sorted array. The y-sorted strip is maintained to avoid rebuilding arrays.
