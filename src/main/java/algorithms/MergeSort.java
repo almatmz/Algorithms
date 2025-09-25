@@ -5,7 +5,7 @@ public class MergeSort {
     public static void sort(int[] a, Metrics m) {
         if (a == null || a.length < 2) return;
         int[] buf = new int[a.length];
-        m.incAllocations(); // buffer counted as allocation
+        m.incAllocations();
         mergesort(a, 0, a.length, buf, m);
     }
 
@@ -19,7 +19,6 @@ public class MergeSort {
         mergesort(a, l, mid, buf, m);
         mergesort(a, mid, r, buf, m);
 
-        // merge a[l..mid-1] and a[mid..r-1] into buf[l..r-1]
         int i = l, j = mid, k = l;
         while (i < mid && j < r) {
             m.incComparisons();

@@ -15,7 +15,7 @@ Metrics such as runtime, recursion depth, comparisons, and allocations are measu
 ## 🏗 Architecture Notes
 
 ### Recursion Depth Control
-- **MergeSort**: Uses a **small-n cutoff** (e.g., `n ≤ 16` → insertion sort) to reduce recursion depth and allocation churn.
+- **MergeSort**: Uses a **small-n cutoff** (e.g., `n ≤ 32` → insertion sort) to reduce recursion depth and allocation churn.
 - **QuickSort**: Always **recurses into the smaller partition** first, while iterating over the larger one. This guarantees stack depth ≲ 2 × ⌊log₂ n⌋ on random pivots.
 - **Deterministic Select**: Recurses only into the **partition containing k** and always chooses the smaller side if ambiguous.
 - **Closest Pair**: Recursion splits the x-sorted array. The y-sorted strip is maintained to avoid rebuilding arrays.
@@ -62,17 +62,9 @@ Metrics such as runtime, recursion depth, comparisons, and allocations are measu
 
 | n       | MergeSort Time (ms) | QS Time (ms) | Select Time (ms) | Closest Pair Time (ms) |
 |---------:|------------------:|--------------:|-----------------:|-----------------------:|
-| 1 000    | 0.51                  | 0,5             | 0,47                | 4,18                      |
-| 10 000   | 2,53                  | 6,67             | 3,27                | 19,55                      |
-| 100 000  | 29,71                  | 27,35             | 10,51                | 156,22                      |
-
-
-| n       | MergeSort depth | QS depth | Select depth | Closest Pair depth  |
-|---------:|------------------:|--------------:|-----------------:|-----------------------:|
-| 1 000    | 6                 | 6             | 0                | 9                      |
-| 10 000   | 10                  | 9             | 0                | 12                      |
-| 100 000  | 13                  | 10             | 0                | 16                      |
-
+| 1 000    | …                  | …             | …                | …                      |
+| 10 000   | …                  | …             | …                | …                      |
+| 100 000  | …                  | …             | …                | …                      |
 
 - **Time vs n**: All four follow their predicted Θ-curves. QuickSort is fastest on average but occasionally shows deeper recursion.
 - **Depth vs n**: QuickSort stays close to 2 log₂ n; MergeSort depth is ≈ log₂ n.

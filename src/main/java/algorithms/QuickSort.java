@@ -8,6 +8,7 @@ public class QuickSort {
     public static void sort(int[] a, Metrics m) {
         if (a == null || a.length < 2) return;
         SortUtils.shuffle(a, m);
+        m.incAllocations();
         quicksortIterative(a, 0, a.length - 1, m);
     }
 
@@ -23,8 +24,8 @@ public class QuickSort {
             int leftSize = p - lo;
             int rightSize = hi - p;
             if (leftSize < rightSize) {
-                quicksortIterative(a, lo, p - 1, m); // smaller first
-                lo = p + 1; // iterate on bigger
+                quicksortIterative(a, lo, p - 1, m);
+                lo = p + 1;
             } else {
                 quicksortIterative(a, p + 1, hi, m);
                 hi = p - 1;
@@ -51,5 +52,7 @@ public class QuickSort {
         return i;
     }
 
-    private static void swap(int[] a, int i, int j) { int t = a[i]; a[i] = a[j]; a[j] = t; }
+    private static void swap(int[] a, int i, int j) {
+        int t = a[i]; a[i] = a[j]; a[j] = t;
+    }
 }

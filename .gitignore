@@ -36,3 +36,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+v/target/surefire-reports/
+ /target/failsafe-reports/
+ /target/site/
+ /coverage/

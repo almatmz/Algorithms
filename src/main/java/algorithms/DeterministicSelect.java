@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 public class DeterministicSelect {
     public static int select(int[] a, int k, Metrics m) {
-        if (a == null || k < 0 || k >= a.length) throw new IllegalArgumentException();
+        if (a == null || k < 0 || k >= a.length) {
+            throw new IllegalArgumentException("Invalid input array or k");
+        }
         return selectInplace(a, 0, a.length - 1, k, m);
     }
 
@@ -15,9 +17,12 @@ public class DeterministicSelect {
             int pivotValue = medianOfMedians(a, left, right, m);
             int pivotIndex = partitionAroundPivotValue(a, left, right, pivotValue, m);
             int rank = pivotIndex - left;
-            if (k == rank) return a[pivotIndex];
-            else if (k < rank) right = pivotIndex - 1;
-            else {
+
+            if (k == rank) {
+                return a[pivotIndex];
+            } else if (k < rank) {
+                right = pivotIndex - 1;
+            } else {
                 k = k - rank - 1;
                 left = pivotIndex + 1;
             }
@@ -30,6 +35,7 @@ public class DeterministicSelect {
         if (pivotIdx > right) {
             pivotIdx = (left + right) >>> 1;
         }
+
         swap(a, pivotIdx, right);
         int store = left;
         for (int i = left; i < right; i++) {
@@ -59,7 +65,9 @@ public class DeterministicSelect {
         }
         m.incAllocations();
 
+        m.enterRecursion();
         int momValue = selectInplace(a, left, left + numMedians - 1, numMedians / 2, m);
+        m.exitRecursion();
         return momValue;
     }
 
@@ -79,5 +87,6 @@ public class DeterministicSelect {
     }
 
     private static void swap(int[] a, int i, int j) {
-        SortUtils.swap(a, i, j); }
+        SortUtils.swap(a, i, j);
+    }
 }
