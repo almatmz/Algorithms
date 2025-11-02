@@ -196,12 +196,14 @@ public class DatasetGenerator {
         Random rand2 = new Random(123);
         
         for (int i = 0; i < 49; i++) {
-            // Each node connects to 1-3 nodes ahead
+            // Each node connects to 1-3 nodes ahead (avoid duplicates)
+            Set<Integer> targets = new HashSet<>();
             int numEdges = 1 + rand2.nextInt(3);
-            for (int e = 0; e < numEdges; e++) {
+            for (int e = 0; e < numEdges && targets.size() < numEdges; e++) {
                 int offset = 1 + rand2.nextInt(Math.min(5, 49 - i));
                 int to = i + offset;
-                if (to < 50) {
+                if (to < 50 && !targets.contains(to)) {
+                    targets.add(to);
                     large3.addEdge(i, to, 1.0 + rand2.nextDouble() * 4.0);
                 }
             }
